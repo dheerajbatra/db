@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Thinking in public</title>
+        <style>
+            :root {
+                --bg: #ffffff;
+                --text: #1a1a1a;
+                --muted: #666666;
+                --link: #0057b8;
+                --link-hover: #003d80;
+                --border: #e0e0e0;
+                --tag-bg: #f0f0f0;
+            }
+
+            [data-theme="dark"] {
+                --bg: #111111;
+                --text: #e8e8e8;
+                --muted: #999999;
+                --link: #6aadff;
+                --link-hover: #99c8ff;
+                --border: #2a2a2a;
+                --tag-bg: #1e1e1e;
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: Georgia, "Times New Roman", serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.7;
+                transition:
+                    background 0.2s,
+                    color 0.2s;
+            }
+
+            .container {
+                max-width: 680px;
+                margin: 0 auto;
+                padding: 60px 24px 120px;
+            }
+
+            /* Header */
+            header {
+                margin-bottom: 56px;
+            }
+
+            .header-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            h1 {
+                font-size: 1.9rem;
+                font-weight: normal;
+                letter-spacing: -0.02em;
+            }
+
+            h1 a {
+                color: var(--text);
+                text-decoration: none;
+            }
+
+            h1 a:hover {
+                text-decoration: underline;
+            }
+
+            .tagline {
+                color: var(--muted);
+                font-size: 0.95rem;
+                margin-top: 6px;
+            }
+
+            nav {
+                margin-top: 20px;
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                color: var(--link);
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-family: system-ui, sans-serif;
+            }
+
+            nav a:hover {
+                color: var(--link-hover);
+                text-decoration: underline;
+            }
+
+            /* Dark mode toggle */
+            .theme-toggle {
+                background: none;
+                border: 1px solid var(--border);
+                color: var(--muted);
+                cursor: pointer;
+                padding: 4px 10px;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                font-family: system-ui, sans-serif;
+                flex-shrink: 0;
+                margin-top: 4px;
+                transition:
+                    border-color 0.2s,
+                    color 0.2s;
+            }
+
+            .theme-toggle:hover {
+                color: var(--text);
+                border-color: var(--muted);
+            }
+
+            /* Posts list */
+            .section-label {
+                font-family: system-ui, sans-serif;
+                font-size: 0.75rem;
+                font-weight: 600;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 20px;
+            }
+
+            .post-list {
+                list-style: none;
+            }
+
+            .post-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 16px;
+                padding: 14px 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .post-item:first-child {
+                border-top: 1px solid var(--border);
+            }
+
+            .post-item a {
+                color: var(--link);
+                text-decoration: none;
+                font-size: 1rem;
+            }
+
+            .post-item a:hover {
+                color: var(--link-hover);
+                text-decoration: underline;
+            }
+
+            .post-meta {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex-shrink: 0;
+            }
+
+            .post-date {
+                color: var(--muted);
+                font-size: 0.82rem;
+                font-family: system-ui, sans-serif;
+                white-space: nowrap;
+            }
+
+            .tag {
+                font-family: system-ui, sans-serif;
+                font-size: 0.72rem;
+                background: var(--tag-bg);
+                color: var(--muted);
+                padding: 2px 7px;
+                border-radius: 3px;
+                white-space: nowrap;
+            }
+
+            /* About blurb */
+            .about {
+                margin-top: 56px;
+                padding-top: 32px;
+                border-top: 1px solid var(--border);
+                font-size: 0.95rem;
+                color: var(--muted);
+            }
+
+            .about a {
+                color: var(--link);
+            }
+
+            .about a:hover {
+                color: var(--link-hover);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div class="header-top">
+                    <div>
+                        <h1>db</h1>
+                        <p class="tagline">The reset is real!</p>
+                    </div>
+                    <button
+                        class="theme-toggle"
+                        onclick="toggleTheme()"
+                        aria-label="Toggle dark mode"
+                    >
+                        <span id="theme-label">Dark</span>
+                    </button>
+                </div>
+                <nav>
+                    <a href="/">Home</a>
+                    <!--<a href="/about.html">About</a>-->
+                    <a
+                        href="https://github.com/dheerajbatra"
+                        target="_blank"
+                        rel="noopener"
+                        >GitHub</a
+                    >
+                    <a href="/feed.xml">RSS</a>
+                </nav>
+            </header>
+
+            <main>
+                <p class="section-label">Posts</p>
+                <ul class="post-list">
+                    <li class="post-item">
+                        <a href="/posts/reset.html">NODEX</a>
+                        <div class="post-meta">
+                            <span class="tag">Nodex</span>
+                            <span class="post-date">2026 Apr 03</span>
+                        </div>
+                    </li>
+                </ul>
+            </main>
+
+            <footer class="about">
+                <p>
+                    Writing about interesting things that I have been working
+                    on.
+                    <!--<a href="mailto:db@db.com">db@db.com</a>.-->
+                </p>
+            </footer>
+        </div>
+
+        <script>
+            // Persist theme across page loads
+            (function () {
+                const saved = localStorage.getItem("theme");
+                if (saved === "dark") {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                    document.getElementById("theme-label").textContent =
+                        "Light";
+                }
+            })();
+
+            function toggleTheme() {
+                const html = document.documentElement;
+                const label = document.getElementById("theme-label");
+                if (html.getAttribute("data-theme") === "dark") {
+                    html.removeAttribute("data-theme");
+                    localStorage.setItem("theme", "light");
+                    label.textContent = "Dark";
+                } else {
+                    html.setAttribute("data-theme", "dark");
+                    localStorage.setItem("theme", "dark");
+                    label.textContent = "Light";
+                }
+            }
+        </script>
+    </body>
+</html>
