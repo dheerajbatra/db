@@ -233,22 +233,12 @@
 
             <main>
                 <p class="section-label">Posts</p>
-                <ul class="post-list">
-                    <li class="post-item">
-                        <!--a href="/posts/reset.html">NODEX</a-->
-                        <a href="https://github.com/dheerajbatra/NODEX">NODEX</a>
-                        <div class="post-meta">
-                            <span class="tag">Nodex</span>
-                            <span class="post-date">2026 Apr 03</span>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="post-list" id="post-list"></ul>
             </main>
 
             <footer class="about">
                 <p>
-                    Writing about interesting things that I have been working
-                    on.
+                    Writing about things that excite me.
                     <!--<a href="mailto:db@db.com">db@db.com</a>.-->
                 </p>
             </footer>
@@ -278,6 +268,64 @@
                     label.textContent = "Light";
                 }
             }
+
+            function createPostItem(post) {
+                const item = document.createElement("li");
+                item.className = "post-item";
+
+                const titleLink = document.createElement("a");
+                titleLink.href = post.url;
+                titleLink.textContent = post.title;
+                item.appendChild(titleLink);
+
+                const meta = document.createElement("div");
+                meta.className = "post-meta";
+
+                if (post.tag) {
+                    const tag = document.createElement("span");
+                    tag.className = "tag";
+                    tag.textContent = post.tag;
+                    meta.appendChild(tag);
+                }
+
+                const date = document.createElement("span");
+                date.className = "post-date";
+                date.textContent = post.date;
+                meta.appendChild(date);
+
+                item.appendChild(meta);
+                return item;
+            }
+
+            async function loadPosts() {
+                const postList = document.getElementById("post-list");
+                try {
+                    const response = await fetch("./Posts/posts.json", {
+                        cache: "no-store",
+                    });
+                    if (!response.ok) {
+                        throw new Error("Unable to load posts");
+                    }
+
+                    const posts = await response.json();
+                    postList.innerHTML = "";
+
+                    posts.forEach((post) => {
+                        postList.appendChild(createPostItem(post));
+                    });
+                } catch (error) {
+                    postList.innerHTML = "";
+                    const fallback = createPostItem({
+                        title: "Posts index unavailable",
+                        url: "https://github.com/dheerajbatra/db/tree/main/Posts",
+                        tag: "Info",
+                        date: "Check repo",
+                    });
+                    postList.appendChild(fallback);
+                }
+            }
+
+            loadPosts();
         </script>
     </body>
 </html>
