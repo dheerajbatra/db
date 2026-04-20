@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Adaptive Model Kit</title>
+        <script>
+            (function () {
+                const saved = localStorage.getItem("theme");
+                if (saved === "dark") {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            })();
+        </script>
+        <style>
+            :root {
+                --bg: #ffffff;
+                --text: #1a1a1a;
+                --muted: #666666;
+                --link: #0057b8;
+            }
+
+            [data-theme="dark"] {
+                --bg: #111111;
+                --text: #e8e8e8;
+                --muted: #999999;
+                --link: #6aadff;
+            }
+
+            body {
+                font-family: Georgia, "Times New Roman", serif;
+                max-width: 760px;
+                margin: 0 auto;
+                padding: 48px 20px 80px;
+                line-height: 1.75;
+                color: var(--text);
+                background: var(--bg);
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .meta {
+                color: var(--muted);
+                margin-bottom: 2rem;
+                font-family: system-ui, sans-serif;
+                font-size: 0.92rem;
+            }
+
+            a {
+                color: var(--link);
+            }
+        </style>
+    </head>
+        <p><a href="../index.html">← Back to home</a></p>
+        <h1>Adaptive Model SDK</h1>
+        <p class="meta">2026 Apr 20 · Model Routing, sdk</p>
+
+        <p>
+            Building up on the ideas from KV-Lab and Adaptive Model Kit, I have
+            been working on adaptive model sdk for last few days to take the
+            idea beyond initial testing. Running amk on local Qwen3.5, Qwen2.5,
+            Gemma4 and other specialist models.</p>
+        <p> Results have been encouraging as I continue to test. </p>
+        <img src="https://raw.githubusercontent.com/dheerajbatra/db/refs/heads/main/Posts/amk-ascii.jpeg"></img>
+        <ul>
+            <li> amk orchestrator decides on model routing, based on query</li>
+            <li> models understand knowledge gaps, so there are intelligent fallbacks on
+            generic models for final decision</li>
+            <li> gaps are actively looked upon by Autoresearcher loop that feeds back into knowledge gaps</li>
+            <li> smaller models run with added knowledge next time</li>
+        </ul>
+        <img src="https://raw.githubusercontent.com/dheerajbatra/db/refs/heads/main/Posts/KV-optimization.jpeg" width="750"></img>
+            <p
+                >Waiting to see if specialists models will be able to run at par
+                with generic models cross-domain, using lower resources.</p>
+        <img src="https://raw.githubusercontent.com/dheerajbatra/db/refs/heads/main/Posts/KV-footprint.jpeg" width="750"></img>
+        <p>
+            GitHub:
+            <a href="https://github.com/dheerajbatra/adaptive-model-sdk"
+                >https://github.com/dheerajbatra/adaptive-model-sdk</a
+            >
+        </p>
+    </body>
+</html>
