@@ -1,5 +1,11 @@
 [
   {
+    "title": "Adaptive Model SDK",
+    "url": "./Posts/adaptive-model-sdk.html",
+    "tag": "Model Routing",
+    "date": "2026 Apr 20"
+  },
+  {
     "title": "Artemis-II Simulation",
     "url": "./Posts/artemis-ii-simulation.html",
     "tag": "Simulation",
